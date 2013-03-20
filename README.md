@@ -1,35 +1,16 @@
 # cljmailgun
 
-FIXME: description
+A simple wrapper around the [Mailgun](http://mailgun.org) REST API.
 
-## Installation
+Still a work in process.
 
-Download from http://example.com/FIXME.
+Clojure API
+-----------
 
-## Usage
+### Sending a plaintext e-mail
 
-FIXME: explanation
-
-    $ java -jar cljmailgun-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2013 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
+``` clojure
+(cljmailgun.core/send-plaintext YourApiKey YourDomain FromAddress {:subject "subject"
+                                                                   :body    "The body"
+																   :to      "one email or a list of emails"})
+```
