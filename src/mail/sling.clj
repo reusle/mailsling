@@ -1,7 +1,10 @@
-(ns cljmailgun.core
-  (:require [clj-http.client :as http])
-  (:use [clojure.string :only (join)])
-  (:use [cheshire.core :only (generate-string parse-string)]))
+(ns mail.sling
+  (:require [clj-http.client :as http]
+            [clojure.string :refer (join)]
+            [cheshire.core :refer (generate-string parse-string)]))
+
+(defonce ^:dynamic *api-key* (System/getenv "MAILGUN_API_KEY"))
+(defonce ^:dynamic *domain* (System/getenv "MAILGUN_APP_DOMAIN"))
 
 (declare comma-list)
 (declare to-mailgun)
@@ -30,6 +33,13 @@
         status (:status resp)
         body (parse-string (:body resp))]
     (if (= status 200)
-      {:sent 'yes
-       :id (body "id")}
-      )))
+      {:sent 'yes, :id (body "id")})))
+
+(defmacro with-sling [credentials & body]
+  `(binding [*api-key* (or (:api-key ~credentials) *api-key*)
+             *domain* (or (:domain ~credentials) *domain*)]
+    ~@body))
+
+(defn shootmail [{:keys [from] :as params}]
+  (send-plaintext *api-key* *domain* from
+    (dissoc params :from)))
