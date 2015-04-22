@@ -30,28 +30,19 @@ be used instead:
 Because sending emails is side-effecty, `with-sling` can be quite convenient
 with multiple email tasks:
 ```clj
-(let [params {:subject "work" :body "do this work now!" :to "minion@fortune500.com"}]
+(let [params {:subject "work" :text "do this work now!" :to "minion@fortune500.com"}]
   (with-sling credentials
     (shootmail (assoc params :from "me@fortune500.com"))
     (shoot-noreply-mail params)))
 ```
-
-### So, you think you can sling DIY better?
-----------
-PR shots are very welcome!
-
-### Using mailsling in Ramen or Disruptive projects?
-----------
-[kanasubs.com](http://www.kanasubs.com) — Convert raw subtitles in Kanji to
-Kana online.
 
 ### Gentle contributions
 ----------
 - [Omar Yasin](https://github.com/omarkj) Author of cljmailgun
 - [Carlos Cunha](https://github.com/ccfontes) Author of the fork
 
-### Yes, there's a license (⌒_⌒;)
+### License
 ----------
-Copyright (C) 2014 Carlos C. Fontes.
+Copyright (C) 2015 Carlos C. Fontes.
 
 Licensed under the [MIT License]("http://opensource.org/licenses/MIT").

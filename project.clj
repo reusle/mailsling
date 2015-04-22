@@ -1,4 +1,4 @@
-(defproject mailsling "0.1.1"
+(defproject mailsling "0.2.0"
 
   :description "Clojure bindings for http://mailgun.com (API v2)"
 
@@ -8,10 +8,8 @@
 
   :license {:name "MIT", :url "http://opensource.org/licenses/MIT"}
 
-  :warn-on-reflection false
-
   :repl-options {:init-ns mail.sling}
 
-  :dependencies [[org.clojure/clojure "1.5.1"]
+  :dependencies [[org.clojure/clojure "1.7.0-alpha1"]
                  [clj-http "0.6.5"]
-                 [cheshire "5.0.2"]])
+                 [email-validator "0.1"]])
